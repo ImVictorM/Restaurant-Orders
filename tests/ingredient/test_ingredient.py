@@ -9,7 +9,7 @@ def test_ingredient():
     assert bacon.name == "bacon"
     assert farinha.name == "farinha"
 
-    # test_invalid_ingredient
+    # test_invalid_ingredient_has_no_restrictions
     invalid_ingredient = Ingredient("invalid_ingredient")
     assert invalid_ingredient.restrictions == set()
 
