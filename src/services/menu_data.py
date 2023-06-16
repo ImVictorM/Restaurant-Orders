@@ -8,12 +8,18 @@ class MenuData:
         df = pd.read_csv(source_path)
         self.dishes = set()
 
-        grouped_df = (
-            df.groupby(["dish", "price"])
-            .apply(lambda df: list(zip(df["ingredient"], df["recipe_amount"])))
+        grouped_dishes = df.groupby(["dish", "price"]).apply(
+            lambda df: list(zip(df["ingredient"], df["recipe_amount"]))
         )
 
-        print(grouped_df)
+        for curr_dish, dish_ingredients in grouped_dishes.items():
+            dish_name, dish_price = curr_dish
+            dish = Dish(dish_name, dish_price)
 
+            for ingredient in dish_ingredients:
+                ingredient_name, ingredient_amount = ingredient
+                dish.add_ingredient_dependency(
+                    Ingredient(ingredient_name), ingredient_amount
+                )
 
-MenuData("data/menu_base_data.csv")
+            self.dishes.add(dish)
