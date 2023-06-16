@@ -4,41 +4,46 @@ import pytest
 
 
 @pytest.fixture
-def dish():
+def bacon_and_eggs():
     dish_name = "bacon and eggs"
     dish_price = 10
     return Dish(dish_name, dish_price)
 
 
-def test_dish(dish):
+@pytest.fixture
+def other_dish():
+    dish_name = "other_dish"
+    dish_price = 4
+    return Dish(dish_name, dish_price)
+
+
+def test_dish(bacon_and_eggs, other_dish):
     # def test_dish_instantiation(dish):
-    assert dish.name == "bacon and eggs"
-    assert dish.price == 10
-    assert repr(dish) == "Dish('bacon and eggs', R$10.00)"
+    assert bacon_and_eggs.name == "bacon and eggs"
+    assert bacon_and_eggs.price == 10
+    assert repr(bacon_and_eggs) == "Dish('bacon and eggs', R$10.00)"
 
     # def test_dish_equality(dish):
-    assert dish == dish
-    assert dish != Dish("other_dish", 4)
+    assert bacon_and_eggs == bacon_and_eggs
+    assert bacon_and_eggs != other_dish
 
-    # def test_dish_hashing(dish):
-    other_dish = Dish("other_dish", 4)
-
-    assert hash(dish) == hash(dish)
-    assert hash(dish) != hash(other_dish)
+    # def test_dish_hashing(dish, other_dish):
+    assert hash(bacon_and_eggs) == hash(bacon_and_eggs)
+    assert hash(bacon_and_eggs) != hash(other_dish)
 
     # def test_dish_ingredients(dish):
     bacon = Ingredient("bacon")
     egg = Ingredient("ovo")
 
-    dish.add_ingredient_dependency(bacon, 2)
-    dish.add_ingredient_dependency(egg, 1)
+    bacon_and_eggs.add_ingredient_dependency(bacon, 2)
+    bacon_and_eggs.add_ingredient_dependency(egg, 1)
 
-    assert dish.recipe.get(bacon) == 2
-    assert dish.recipe.get(egg) == 1
-    assert dish.get_ingredients() == {bacon, egg}
+    assert bacon_and_eggs.recipe.get(bacon) == 2
+    assert bacon_and_eggs.recipe.get(egg) == 1
+    assert bacon_and_eggs.get_ingredients() == {bacon, egg}
 
     # def test_dish_restrictions(dish):
-    assert dish.get_restrictions() == {
+    assert bacon_and_eggs.get_restrictions() == {
         Restriction.ANIMAL_DERIVED,
         Restriction.ANIMAL_MEAT,
     }
