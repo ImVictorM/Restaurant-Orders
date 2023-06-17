@@ -30,7 +30,7 @@ class MenuBuilder:
 
         for dish in self.menu_data.dishes:
             dish_restrictions = dish.get_restrictions()
-            dish_ingredients = set(dish.get_ingredients())
+            dish_ingredients = dish.get_ingredients()
 
             if restriction not in dish_restrictions:
                 dish_table["dish_name"].append(dish.name)
