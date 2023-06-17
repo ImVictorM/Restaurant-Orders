@@ -34,4 +34,9 @@ class InventoryMapping:
         return True
 
     def consume_recipe(self, recipe: Recipe) -> None:
-        pass
+        can_make_recipe = self.check_recipe_availability(recipe)
+        if can_make_recipe:
+            for recipe_ingredient, recipe_amount in recipe.items():
+                self.inventory[recipe_ingredient] -= recipe_amount
+        else:
+            raise ValueError("Some ingredients are not available!")
