@@ -17,6 +17,7 @@ In this project, I was able to:
     <thead>
         <tr>
             <th>Python</th>
+            <th>Pandas</th>
             <th>Pytest</th>
         </tr>
     </thead>
@@ -30,6 +31,16 @@ In this project, I was able to:
                        width="40" 
                        height="40"
                     /> 
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://pandas.pydata.org/" target="_blank" rel="noneferrer">
+                    <img
+                        src="https://seeklogo.com/images/P/pandas-logo-776F6D45BB-seeklogo.com.png"
+                        alt="pandas"
+                        width="40"
+                        height="40"
+                    />
                 </a>
             </td>
             <td align="center">
